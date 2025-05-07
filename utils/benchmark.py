@@ -1,5 +1,7 @@
 import time
-from typing import Any, Dict
+from typing import Any, Dict, List
+
+import numpy as np
 from sklearn.utils.class_weight import compute_sample_weight
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
@@ -14,13 +16,14 @@ class Benchmark:
     def __init__(self, model: Any):
         self.model = model
 
-    def evaluate(self, X, y_true) -> Dict[str, float]:
+    def evaluate(self, X: List[str], y_true: np.ndarray, verbose: bool = False) -> Dict[str, float]:
         '''
         Calculates classification metrics and prediction time.
 
         Args:
             X: Input features.
             y_true: True labels.
+            verbose: If True, prints the summary of metrics.
 
         Returns:
             dict: A dictionary containing metrics and prediction time.
@@ -40,5 +43,12 @@ class Benchmark:
             'samples': len(y_true),
             'duplicates': sum(y_true),
         }
+
+        if verbose:
+            print('Summary:')
+            print(f"{'Metric':<20}{'Value':>15}")
+            print('-' * 35)
+            for metric, value in metrics.items():
+                print(f'{metric.capitalize():<20}{value:>15.5f}')
 
         return metrics
