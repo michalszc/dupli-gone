@@ -3,3 +3,5 @@ sentence-transformers
 faiss-cpu
 scikit-learn
 numpy
+tqdm
+matplotlib
