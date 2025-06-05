@@ -65,5 +65,6 @@ def prepare_dataset() -> pd.DataFrame:
     df = pd.concat(dfs, ignore_index=True)
     df['label'] = df['caption'].apply(lambda x: 1 if x == 'Duplicate' else 0)
     df.dropna(subset=['abstract'], inplace=True)
+    df.reset_index(drop=True, inplace=True)
 
     return df
