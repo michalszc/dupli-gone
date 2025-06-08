@@ -2,6 +2,7 @@ import time
 from typing import Any, Dict, List
 
 import numpy as np
+import pandas as pd
 from sklearn.utils.class_weight import compute_sample_weight
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
@@ -16,7 +17,7 @@ class Benchmark:
     def __init__(self, model: Any):
         self.model = model
 
-    def evaluate(self, X: List[str], y_true: np.ndarray, verbose: bool = False) -> Dict[str, float]:
+    def evaluate(self, X: List[str] | pd.DataFrame, y_true: np.ndarray, verbose: bool = False) -> Dict[str, float]:
         '''
         Calculates classification metrics and prediction time.
 
