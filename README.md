@@ -57,21 +57,30 @@ Merged MinHash with Jaccard works as follows:
 
 ### MinHash with Jaccard method performance
 The relation between threshold for MinHash, executaion time and f1-score is present in the picture below.
-![minhash_jaccard](minhash_jaccard_res.png) 
+![minhash_jaccard](images/minhash_jaccard_res.png) 
 
 ## Embeddings
-The deduplication approach works by first converting each text into a dense vector - an embedding - that captures its semantic meaning, then using FAISS, a high-performance similarity search library, to quickly find pairs of embeddings whose cosine similarity (computed as the inner product of normalized vectors) exceeds a chosen threshold. By querying each embedding for its nearest neighbors in the FAISS index and marking any texts whose similarity score is above the cutoff, the method efficiently flags all near-duplicates in a corpus.
+The deduplication approach works by first converting each text into a dense vector - an embedding - that captures its semantic meaning, then using [FAISS](https://github.com/facebookresearch/faiss), a high-performance similarity search library, to quickly find pairs of embeddings whose cosine similarity (computed as the inner product of normalized vectors) exceeds a chosen threshold. By querying each embedding for its nearest neighbors in the FAISS index and marking any texts whose similarity score is above the cutoff, the method efficiently flags all near-duplicates in a corpus.
 
-Combining the sentence‑transformers/paraphrase‑MiniLM‑L3‑v2 encoder with a FlatIP FAISS index and batch size of 256, we achieve state‑of‑the‑art deduplication performance at scale. 
+Combining the `sentence‑transformers/paraphrase‑MiniLM‑L3‑v2` encoder with a FlatIP FAISS index and batch size of 256, we achieve state‑of‑the‑art deduplication performance at scale. 
 
 ### Embeddings method performance 
 
-The presented values were achieved on the whole dataset.
+The presented values were achieved on the whole dataset on **Apple M4 Pro**.
 
 | Accuracy | Precision | Recall | F1 Score | Prediction Time (s) |
 |----------|-----------|--------|----------|----------------------|
 | 0.92749  | 0.98256   | 0.87043| 0.92310  | 6.00272              |
 
+### Embeddings GPU vs CPU 
+
+Execution time was compared for deduplication using SentenceTransformer with different backends:  
+
+- Cpu, in this case **Intel Core Ultra 7-155H**, 
+- CUDA, tested with mobile version of **nVidia GeForce RTX 4060, 8 GB VRAM, 35W power**, 
+- MPS(Metal Performance Shaders) for **Apple M4 Pro**. 
+
+![CPUvsGPU](images/CPUvsGPU.png)
 
 ## SemHash
 [SemHash](https://github.com/MinishLab/semhash) is a lightweight and flexible tool for deduplicating datasets, filtering outliers, and finding representative samples using semantic similarity. It combines fast embedding generation from Model2Vec with efficient ANN-based similarity search through Vicinity. 
