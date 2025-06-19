@@ -78,7 +78,7 @@ Execution time was compared for deduplication using SentenceTransformer with dif
 
 - Cpu, in this case **Intel Core Ultra 7-155H**, 
 - CUDA, tested with mobile version of **Nvidia GeForce RTX 4060, 8 GB VRAM, 35W power**, 
-- MPS(Metal Performance Shaders) for **Apple M4 Pro**. 
+- MPS (Metal Performance Shaders) for **Apple M4 Pro**. 
 
 ![CPUvsGPU](images/CPUvsGPU.png)
 
