@@ -77,7 +77,7 @@ The presented values were achieved on the whole dataset on **Apple M4 Pro**.
 Execution time was compared for deduplication using SentenceTransformer with different backends:  
 
 - Cpu, in this case **Intel Core Ultra 7-155H**, 
-- CUDA, tested with mobile version of **nVidia GeForce RTX 4060, 8 GB VRAM, 35W power**, 
+- CUDA, tested with mobile version of **Nvidia GeForce RTX 4060, 8 GB VRAM, 35W power**, 
 - MPS(Metal Performance Shaders) for **Apple M4 Pro**. 
 
 ![CPUvsGPU](images/CPUvsGPU.png)
